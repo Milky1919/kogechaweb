@@ -67,6 +67,11 @@ app.get('/post/:slug', (req, res) => {
     });
 });
 
+// 404 handler (Redirect to root)
+app.use((req, res, next) => {
+    res.redirect('/');
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
