@@ -1,0 +1,94 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.post-card {
+    background: #fff;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post-card h2 {
+    margin-top: 0;
+}
+
+.post-card a {
+    text-decoration: none;
+    color: #333;
+}
+
+.post-card a:hover {
+    color: #007bff;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+article {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+article h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Markdown Content Styling */
+article img {
+    max-width: 100%;
+    height: auto;
+}
+
+article pre {
+    background: #f8f8f8;
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 4px;
+}
+
+code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    background: #f8f8f8;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}

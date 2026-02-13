@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %> | Kogecha Blog
+    </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="/">Kogecha.org</a>
+    </header>
+
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <article>
+            <h1>
+                <%= title %>
+            </h1>
+            <div class="date">
+                <%= date %>
+            </div>
+            <hr>
+            <div class="content">
+                <%- html %>
+            </div>
+        </article>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kogecha Blog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="/">Kogecha.org</a>
+    </header>
+
+    <div class="container">
+        <% posts.forEach(post=> { %>
+            <div class="post-card">
+                <div class="date">
+                    <%= post.date %>
+                </div>
+                <h2><a href="/post/<%= post.slug %>">
+                        <%= post.title %>
+                    </a></h2>
+            </div>
+            <% }); %>
+    </div>
+</body>
+
+</html>
