@@ -7,6 +7,19 @@ const fm = require('front-matter');
 const app = express();
 const PORT = process.env.PORT || 80;
 
+// Enable proxy trust for correct protocol/host detection behind CapRover Nginx
+app.enable('trust proxy');
+
+// Middleware: Redirect all non-kogecha.org traffic to root (Handles aliases & subdomains)
+app.use((req, res, next) => {
+    const host = req.hostname;
+    // Skip redirect for localhost (dev) or if already on correct domain
+    if (host === 'localhost' || host === 'kogecha.org') {
+        return next();
+    }
+    res.redirect(301, `https://kogecha.org${req.originalUrl}`);
+});
+
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
