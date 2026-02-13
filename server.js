@@ -12,6 +12,18 @@ app.use(express.static('public'));
 
 const CONTENT_DIR = path.join(__dirname, 'content');
 
+// Helper to format date as JST YYYY/MM/DD
+function formatDate(date) {
+    if (!date) return '1970/01/01';
+    const d = new Date(date);
+    return d.toLocaleDateString('ja-JP', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        timeZone: 'Asia/Tokyo'
+    });
+}
+
 // Helper to get all posts
 function getPosts() {
     const files = fs.readdirSync(CONTENT_DIR);
@@ -23,11 +35,11 @@ function getPosts() {
             return {
                 slug: file.replace('.md', ''),
                 title: attributes.title || 'No Title',
-                date: attributes.date || '1970-01-01',
+                date: formatDate(attributes.date),
                 ...attributes
             };
         })
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
+        .sort((a, b) => (a.date < b.date ? 1 : -1)); // Simple string sort works for YYYY/MM/DD
 }
 
 // Homepage: List all posts
@@ -39,7 +51,7 @@ app.get('/', (req, res) => {
 // Post Page: Render specific markdown
 app.get('/post/:slug', (req, res) => {
     const filePath = path.join(CONTENT_DIR, req.params.slug + '.md');
-    
+
     if (!fs.existsSync(filePath)) {
         return res.status(404).send('Post not found');
     }
@@ -48,10 +60,10 @@ app.get('/post/:slug', (req, res) => {
     const { attributes, body } = fm(content);
     const html = marked.parse(body);
 
-    res.render('post', { 
-        title: attributes.title, 
-        date: attributes.date,
-        html 
+    res.render('post', {
+        title: attributes.title,
+        date: formatDate(attributes.date),
+        html
     });
 });
 
