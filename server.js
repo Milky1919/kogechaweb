@@ -33,10 +33,10 @@ function getPosts() {
             const content = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf8');
             const { attributes } = fm(content);
             return {
+                ...attributes, // Spread first to copy raw properties
                 slug: file.replace('.md', ''),
                 title: attributes.title || 'No Title',
-                date: formatDate(attributes.date),
-                ...attributes
+                date: formatDate(attributes.date), // Format date (overwrites raw date)
             };
         })
         .sort((a, b) => (a.date < b.date ? 1 : -1)); // Simple string sort works for YYYY/MM/DD
