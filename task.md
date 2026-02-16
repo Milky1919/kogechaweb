@@ -1,0 +1,61 @@
+# CapRover Setup Recovery
+
+- [x] Confirm SSH access method (User operating manually) <!-- id: 0 -->
+- [x] Confirm SSH access method (User operating manually) <!-- id: 0 -->
+- [x] Inspect file permissions (Need sudo for content) <!-- id: 1 -->
+- [x] Read `config-captain.json` with sudo <!-- id: 1-1 -->
+- [x] Check Docker service status <!-- id: 2 -->
+- [x] Generate repair script for `config-captain.json` <!-- id: 3 -->
+- [x] Apply corrections to `config-override.json` and `config-captain.json` <!-- id: 4 -->
+- [x] Verify Dashboard access (http://captain.kogecha.org) <!-- id: 5 -->
+- [ ] Verify functional access (Apps screen visible) <!-- id: 6 -->
+- [x] Check "Monitoring" tab (Alternative to Dashboard stats) <!-- id: 6-1 -->
+    - [x] Click "Start NetData Engine" button <!-- id: 6-1-1 -->
+    - [x] Bypass/Configure Notification settings (Optional) <!-- id: 6-1-2 -->
+    - [x] Confirm detailed stats appear <!-- id: 6-1-3 -->
+- [ ] Investigate if main Dashboard setup screen can be skipped manually <!-- id: 6-2 -->
+- [ ] Attempt "Update Domain" in UI to sync state (Optional) <!-- id: 7 -->
+- [x] Change Password (crucial security step) <!-- id: 8 -->
+- [ ] Final check: Create a test app (e.g., 'hello-world') <!-- id: 9 -->
+    - [x] Create app entry 'test' <!-- id: 9-1 -->
+    - [x] Deploy sample image (nginxdemos/hello) <!-- id: 9-2 -->
+    - [x] Configured Wildcard Service in Cloudflare Tunnel (*.kogecha.org) <!-- id: 9-3 -->
+    - [x] Verify/Add Wildcard CNAME Record in Cloudflare DNS <!-- id: 9-4 -->
+        - [x] Add CNAME record for `*` pointing to Tunnel domain <!-- id: 9-4-1 -->
+    - [x] Troubleshoot DNS propagation (nslookup test.kogecha.org) <!-- id: 9-5 -->
+        - [x] Add explicit `test` CNAME record to isolate wildcard issue <!-- id: 9-5-1 -->
+        - [x] Flush local DNS cache (ipconfig /flushdns) (User reported failure) <!-- id: 9-5-2 -->
+        - [x] Verify wildcard functionality (nslookup random-test.kogecha.org) <!-- id: 9-5-3 -->
+        - [x] Flush Browser DNS Cache (chrome://net-internals/#dns) (User reported failure) <!-- id: 9-5-4 -->
+    - [x] Deploy '2048' Game manually (Image deprecated/failed) <!-- id: 9-7 -->
+    - [x] Deploy '2048' Game (Image: agrawpri/2048-docker) to verify system <!-- id: 9-8 -->
+        - [x] Verify instant access to `game.kogecha.org` <!-- id: 9-8-1 -->
+- [ ] Security Enhancement (Optional but Recommended) <!-- id: 9-9 -->
+    - [x] Enable 2FA (Skipped: Requires paid plan) <!-- id: 9-9-1 -->
+    - [x] Configure Cloudflare Access (Skipped: Interferes with CapRover dashboard API) <!-- id: 9-9-2 -->
+        - [x] Create Application in Zero Trust <!-- id: 9-9-2a -->
+        - [x] Disable unconfigured 'Google' auth (User encountering error) <!-- id: 9-9-2b -->
+        - [x] Verify if Access blocks API calls (Confirmed blocking, reverted) <!-- id: 9-9-2c -->
+- [ ] Configure Root Domain (kogecha.org) <!-- id: 11 -->
+    - [ ] Map root domain to an app (e.g., game or new app) <!-- id: 11-1 -->
+- [ ] Deploy via GitHub (CI/CD) <!-- id: 12 -->
+    - [x] Create Dockerfile & index.html (Created in AAA folder) <!-- id: 12-1 -->
+    - [x] Setup GitHub Repository (Pushed to Milky1919/kogechaweb) <!-- id: 12-2 -->
+    - [x] Configure CapRover App & Webhook <!-- id: 12-3 -->
+        - [x] Create new app 'kogecha-web' (Created settings saved) <!-- id: 12-3-1 -->
+        - [x] Deployment Method 3: GitHub (Build successful, content verified) <!-- id: 12-3-2 -->
+- [x] Configure Root Domain (kogecha.org) <!-- id: 11 -->
+    - [x] Map root domain to 'kogecha-web' app <!-- id: 11-1 -->
+    - [ ] Optional: Redirect default subdomain to root (force URL consistency) <!-- id: 11-2 -->
+- [/] Upgrade to Small CMS (User Request) <!-- id: 13 -->
+    - [x] Plan: Git-based Markdown CMS (Files created: server.js, views, styles) <!-- id: 13-1 -->
+    - [x] Action: Push changes to GitHub (Pushed, pending deploy) <!-- id: 13-3 -->
+    - [x] Configure GitHub Webhook (Verified: User reported success) <!-- id: 13-4 -->
+    - [x] Date Format Fix (JST applied to root & post pages) <!-- id: 13-5 -->
+    - [x] Block Search Bots (robots.txt created) <!-- id: 13-6 -->
+    - [x] Customize 404 Page (Reverted 404.ejs, implemented Redirect to Root) <!-- id: 13-7 -->
+    - [ ] Configure Wildcard Redirect (Redirect unknown subdomains to root) <!-- id: 13-8 -->
+        - [x] Update server.js logic (Force kogecha.org) <!-- id: 13-8-1 -->
+        - [ ] Add wildcard domain '*.kogecha.org' in CapRover <!-- id: 13-8-2 -->
+    - [ ] Plan: Dynamic Node.js/SQLite CMS (Web interface, persistent storage) <!-- id: 13-2 -->
+- [x] Security check: Confirm no revert needed <!-- id: 10 -->

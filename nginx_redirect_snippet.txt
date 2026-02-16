@@ -1,0 +1,9 @@
+
+# Default catch-all server block (modified)
+server {
+    listen       80 default_server;
+    server_name  _;
+
+    # Redirect all unknown domains to kogecha.org
+    return 301 https://kogecha.org$request_uri;
+}
