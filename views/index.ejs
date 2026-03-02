@@ -19,9 +19,18 @@
                 <div class="date">
                     <%= post.date %>
                 </div>
-                <h2><a href="/post/<%= post.slug %>">
-                        <%= post.title %>
-                    </a></h2>
+                <h2>
+                    <a href="/post/<%= post.slug %>">
+                        <% if (post.password) { %>
+                            <% if (unlockedPosts && unlockedPosts[post.slug]) { %>
+                                🔓
+                                <% } else { %>
+                                    🔒
+                                    <% } %>
+                                        <% } %>
+                                            <%= post.title %>
+                    </a>
+                </h2>
             </div>
             <% }); %>
     </div>
