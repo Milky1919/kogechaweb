@@ -34,6 +34,9 @@ app.use(express.urlencoded({ extended: true })); // Middleware to parse form dat
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+// Expose the portfolio images directory
+app.use('/portfolio-img', express.static(path.join(__dirname, 'content', 'portfolio-img')));
+
 const CONTENT_DIR = path.join(__dirname, 'content');
 
 // Helper to format date as JST YYYY/MM/DD
